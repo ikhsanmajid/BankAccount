@@ -36,19 +36,17 @@ public class BankAccountTest {
         Assert.assertEquals(accountBalance, expectedAccountBalance, "accountBalance berbeda");
     }
 
-    @Test
+    @Test(dependsOnMethods = "testAccountInformation")
     public void testDeposit(){
         Double deposit = account.deposit(20000);
         double expectedBalance = 40000;
         Assert.assertEquals(deposit, expectedBalance, "Deposit gagal");
     }
 
-    @Test
+    @Test(dependsOnMethods = "testAccountInformation")
     public void testWithdraw(){
         String withdraw = account.withdraw(20000);
         Assert.assertTrue(withdraw.contains("berhasil"), "Withdraw gagal");
     }
-
-
 
 }
