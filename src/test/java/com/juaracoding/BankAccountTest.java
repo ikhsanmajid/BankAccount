@@ -49,4 +49,10 @@ public class BankAccountTest {
         Assert.assertTrue(withdraw.contains("berhasil"), "Withdraw gagal");
     }
 
+    @Test(dependsOnMethods = "testAccountInformation")
+    public void testTransferTo(){
+        String transfer = account.transferTo(2, 20000);
+        Assert.assertTrue(transfer.contains("berhasil"), "Transfer gagal");
+    }
+
 }

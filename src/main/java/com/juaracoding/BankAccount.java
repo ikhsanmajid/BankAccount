@@ -56,6 +56,27 @@ public class BankAccount {
         }
     }
 
+    String transferTo(Integer recipient, double amount){
+        AccountInfo value = account.get(accountNumber);
+        double balance = value.getAccountBalance();
+        AccountInfo target = account.get(recipient);
+//        System.out.println(target);
+        if (target == null){
+            return "Rekening penerima tidak terdaftar";
+        }else{
+            if (amount > balance){
+                return "Saldo tidak cukup";
+            }else{
+                double newBalance = balance - amount;
+                value.setAccountBalance(newBalance);
+                double targetBalance = target.getAccountBalance();
+                double newTargetBalance = targetBalance + amount;
+                target.setAccountBalance(newTargetBalance);
+                return "Transfer dengan nominal: "+amount+" berhasil";
+            }
+        }
+    }
+
     void displayAccountInfo(){
         Map<String, Object> result = getAccountInformation();
 
@@ -76,9 +97,12 @@ public class BankAccount {
         BankAccount bank = new BankAccount();
 
         bank.setNewAccount(1, "Ikhsan", 20000);
+        bank.setNewAccount(2, "Majid", 20000);
         bank.selectAccount(1);
 
         bank.displayAccountInfo();
+
+        System.out.println(bank.transferTo(2, 20000));
 
 
 
