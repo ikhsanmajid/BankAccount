@@ -3,6 +3,7 @@ package com.juaracoding;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import java.util.Map;
 
@@ -54,5 +55,4 @@ public class BankAccountTest {
         String transfer = account.transferTo(2, 20000);
         Assert.assertTrue(transfer.contains("berhasil"), "Transfer gagal");
     }
-
 }
