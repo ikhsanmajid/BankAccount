@@ -63,7 +63,9 @@ public class BankAccount {
 //        System.out.println(target);
         if (target == null){
             return "Rekening penerima tidak terdaftar";
-        }else{
+        } else if ( recipient == accountNumber ) {
+            return "tidak bisa transfer ke diri sendiri";
+        } else{
             if (amount > balance){
                 return "Saldo tidak cukup";
             }else{
@@ -72,7 +74,7 @@ public class BankAccount {
                 double targetBalance = target.getAccountBalance();
                 double newTargetBalance = targetBalance + amount;
                 target.setAccountBalance(newTargetBalance);
-                return "Transfer dengan nominal: "+amount+" berhasil";
+                return "Transfer dengan nominal: "+amount+" ke (no rekening:"+recipient+" nama rekening: "+target.getAccountName()+") berhasil";
             }
         }
     }
@@ -100,9 +102,11 @@ public class BankAccount {
         bank.setNewAccount(2, "Majid", 20000);
         bank.selectAccount(1);
 
+        System.out.println(bank.transferTo(2, 20000));
+
         bank.displayAccountInfo();
 
-        System.out.println(bank.transferTo(2, 20000));
+
 
 
 
