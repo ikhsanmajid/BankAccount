@@ -54,4 +54,13 @@ public class BankAccountTest {
         String transfer = account.transferTo(2, 20000);
         Assert.assertTrue(transfer.contains("berhasil"), "Transfer gagal");
     }
+    @Test(dependsOnMethods = "testAccountInformation")
+    public void testDisplayAccountInfo(){
+        String[] data = account.displayAccountInfo();
+        String expected[] = {"1", "Ikhsan", "20000.0"};
+        Assert.assertTrue(data[0].contains(expected[0]), "No Akun salah");
+        Assert.assertTrue(data[1].contains(expected[1]), "Nama Akun salah");
+        Assert.assertTrue(data[2].contains(expected[2]), "Saldo Akun salah");
+    }
+
 }

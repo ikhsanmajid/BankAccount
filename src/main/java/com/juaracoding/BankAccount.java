@@ -79,16 +79,16 @@ public class BankAccount {
         }
     }
 
-    void displayAccountInfo(){
+    String[] displayAccountInfo(){
         Map<String, Object> result = getAccountInformation();
 
         Object accountNumber = result.get("accountNumber");
         Object accountName = result.get("accountName");
         Object accountBalance = result.get("accountBalance");
 
-        System.out.println("No Account: "+accountNumber);
-        System.out.println("Nama Account: "+accountName);
-        System.out.println("Saldo Account: "+accountBalance);
+        String data[] = {"No Account: "+accountNumber, "Nama Account: "+accountName, "Saldo Account: "+accountBalance};
+
+        return data;
     }
 
 
@@ -104,7 +104,11 @@ public class BankAccount {
 
         System.out.println(bank.transferTo(2, 20000));
 
-        bank.displayAccountInfo();
+        String[] data = bank.displayAccountInfo();
+
+        for (String e: data){
+            System.out.println(e);
+        }
 
 
 
